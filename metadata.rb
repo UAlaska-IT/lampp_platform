@@ -13,10 +13,12 @@ issues_url "#{git_url}/issues" if respond_to?(:issues_url)
 
 version '0.1.0'
 
-supports 'ubuntu', '>= 16.0'
+supports 'ubuntu', '>= 18.0'
 supports 'centos', '>= 7.0'
 
 chef_version '>= 14.0' if respond_to?(:chef_version)
 
 depends 'http_platform'
-depends 'firewall'
+depends 'mariadb'
+depends 'yum-epel'
+depends 'yum-ius'
