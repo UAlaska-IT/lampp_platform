@@ -4,10 +4,10 @@ name 'lampp_platform'
 maintainer 'OIT Systems Engineering'
 maintainer_email 'ua-oit-se@alaska.edu'
 license 'MIT'
-description 'Installs/configures a web platform with Apache, PHP, and MySQL or PostgreSQL'
+description 'Installs/configures a web platform with Apache, PHP, and MariaDB or PostgreSQL'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
-git_url = 'https://github.alaska.edu/oit-cookbooks/lampp_platform'
+git_url = 'https://github.com/UAlaska-IT/lampp_platform'
 source_url git_url if respond_to?(:source_url)
 issues_url "#{git_url}/issues" if respond_to?(:issues_url)
 
