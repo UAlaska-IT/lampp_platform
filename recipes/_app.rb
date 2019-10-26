@@ -49,6 +49,15 @@ checksum_file 'Mediawiki Checksum' do
   source_path dl_location
   target_path "#{cache_dir}/#{mediawiki_directory}-dl-checksum"
 end
+
+ruby_block 'App Updated' do
+  block do
+    node.default[tcb]['app_updated'] = true
+  end
+  action :nothing
+  subscribes :run, 'checksum_file[Mediawiki Checksum]', :immediate
+end
+
 # Extraction is not idempotent?
 archive_file 'Mediawiki Archive' do
   path dl_location
@@ -56,19 +65,17 @@ archive_file 'Mediawiki Archive' do
   overwrite true
   group 'root'
   owner 'root'
-  action :nothing
-  subscribes :extract, 'checksum_file[Mediawiki Checksum]', :immediate
+  only_if { node[tcb]['app_updated'] }
 end
+
 # Rsync regularizes the lib directory and ensure no files hang around from old versions
 # Note the trailing slashes
 src_location = File.join(cache_dir, mediawiki_directory)
 bash 'Sync Files' do
   code "rsync -av --delete-before --exclude 'LocalSettings.php' '#{src_location}/' '#{serve_location}/'"
-  action :nothing
-  subscribes :run, 'archive_file[Mediawiki Archive]', :immediate
+  only_if { node[tcb]['app_updated'] }
 end
 bash 'Set Permissions' do
   code "chown -R #{default_apache_user}:#{default_apache_group} '#{serve_location}'"
-  action :nothing
-  subscribes :run, 'bash[Sync Files]', :immediate
+  only_if { node[tcb]['app_updated'] }
 end
