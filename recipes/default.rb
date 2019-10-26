@@ -7,3 +7,5 @@ include_recipe 'http_platform::default'
 include_recipe "#{tcb}::_install"
 
 include_recipe "#{tcb}::_database"
+
+include_recipe "#{tcb}::_app"
