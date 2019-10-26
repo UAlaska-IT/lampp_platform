@@ -55,10 +55,6 @@ describe package "#{php_prefix(node)}-xml" do
   it { should be_installed }
 end
 
-describe package "#{php_prefix(node)}-mbstring" do
-  it { should be_installed }
-end
-
 # Optimization
 describe package 'php-apcu' do
   it { should be_installed }
@@ -72,33 +68,6 @@ describe package "#{php_prefix(node)}-pecl-apcu" do
   before do
     skip if node['platform_family'] == 'debian'
   end
-end
-
-describe package "#{php_prefix(node)}-intl" do
-  it { should be_installed }
-end
-
-# Images and thumbnails
-describe package 'imagemagick' do
-  it { should be_installed }
-  before do
-    skip unless node['platform_family'] == 'debian'
-  end
-end
-
-describe package 'ImageMagick' do
-  it { should be_installed }
-  before do
-    skip if node['platform_family'] == 'debian'
-  end
-end
-
-describe package 'inkscape' do
-  it { should be_installed }
-end
-
-describe package "#{php_prefix(node)}-gd" do
-  it { should be_installed }
 end
 
 # Web serving

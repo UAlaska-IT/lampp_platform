@@ -37,21 +37,9 @@ package "#{php_prefix}-json"
 
 package "#{php_prefix}-xml"
 
-package "#{php_prefix}-mbstring"
-
 # Optimization
 package 'php-apcu' if is_debian
 package "#{php_prefix}-pecl-apcu" unless is_debian
-
-package "#{php_prefix}-intl"
-
-# Images and thumbnails
-package 'imagemagick' if is_debian
-package 'ImageMagick' unless is_debian
-
-package 'inkscape'
-
-package "#{php_prefix}-gd"
 
 # Web serving
 package "#{php_prefix}-cgi"
