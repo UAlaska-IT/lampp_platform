@@ -1,9 +1,11 @@
-# HTTP Platform Cookbook
+# LAMPP Platform Cookbook
 
 __Maintainer: OIT Systems Engineering__ (<ua-oit-se@alaska.edu>)
 
 ## Purpose
 
+This cookbook configures a stack consisting of Linux, Apache, MariaDB and PostgreSQL (LAMPP).
+Apache is configured using the [http_platform cookbook](https://github.com/ualaska-it/http_platform).
 
 ## Requirements
 
@@ -36,9 +38,17 @@ This cookbook provides no custom resources.
 
 ## Recipes
 
+### lampp_platform::default
+
+This recipe configures a webserver and database.
 
 ## Attributes
 
+### default
+
+### php
+
+### database
 
 ## Examples
 
@@ -48,7 +58,3 @@ See recipes and attributes for details of what this cookbook does.
 ## Development
 
 See CONTRIBUTING.md and TESTING.md.
-
-### ToDo
-
-* Automatic stapling
