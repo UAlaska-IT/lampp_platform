@@ -1,98 +1,68 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  region: us-west-1
+  instance_type: t3a.micro
+  security_group_ids: ['kitchen_test_sg']
+  tags:
+    Name: LAMPP Platform
+    Service: Infrastructure
+    Environment: Test
+    Fund: 103010
+    Org: 60412
+    Department: Systems Engineering
 
 provisioner:
   name: chef_zero
   always_update_cookbooks: true
   product_name: chef
-  product_version: 14.7.17
+  product_version: 15.4.45
   install_strategy: once
   attributes:
-    se_baseline:
-      chef_client_version: '14.7.17'
-      configure_monitoring: false
-    nix_baseline:
-      chef_client_version: '14.7.17'
-      configure_update: false
+    lampp_platform:
+      create_php_info: true
+    firewall:
+      allow_ssh: true
+    http_platform:
+      admin_email: 'mail@me'
+      cert:
+        organization: 'bad-business'
+        org_unit: 'going-down'
 
 verifier:
   name: inspec
 
-# Every bento box supported by Chef 14
 platforms:
   - name: ubuntu-18.04
-    driver:
-      network:
-        - ["forwarded_port", {guest: 80, host: 8080, host_ip: "localhost"}]
-        - ["forwarded_port", {guest: 443, host: 8043, host_ip: "localhost"}]
   - name: ubuntu-16.04
-  - name: ubuntu-16.04-i386
   - name: ubuntu-14.04
-  - name: ubuntu-14.04-i386
-  - name: debian-9.5
-  - name: debian-9.5-i386
-  - name: debian-8.11
-  - name: debian-8.11-i386
-  - name: centos-7.5
-    driver:
-      network:
-        - ["forwarded_port", {guest: 80, host: 8180, host_ip: "localhost"}]
-        - ["forwarded_port", {guest: 443, host: 8143, host_ip: "localhost"}]
-  - name: centos-6.10
-  - name: centos-6.10-i386
-  - name: centos-5.11
-  - name: centos-5.11-i386
-  - name: oracle-7.5
+  - name: debian-9
+  - name: centos-7
+  - name: centos-6
+  - name: oracle-7.6
   - name: oracle-6.10
-  - name: oracle-6.10-i386
-  - name: oracle-5.11
-  - name: oracle-5.11-i386
+  - name: fedora-29
   - name: fedora-28
-  - name: fedora-27
-  - name: gbailey/amzn2 # 2018.11
-  - name: stakahashi/amazonlinux2 # 2017.12
-  - name: realreadme/amazon2016.09
-  - name: opensuse-leap-15.0
-  - name: opensuse-leap-42.3
-  - name: freebsd-12.0
-  - name: freebsd-12.0-i386
-  - name: freebsd-11.2
-  - name: freebsd-11.2-i386
-  - name: freebsd-10.4
-  - name: freebsd-10.4-i386
-  - name: mwrock/Windows2016
-    transport:
-      name: winrm
-  - name: a-mcf/Win2012R2-WMF5-min
-    transport:
-      name: winrm
-  - name: salesforce/server2008r2
-    transport:
-      name: winrm
+  - name: amazon2
+  - name: amazon2-2018
+  - name: sles-15
+  - name: windows-2019
+    driver:
+      image_id: ami-004a782f694e8dde2
+  - name: windows-2016
+  - name: windows-2012r2
+  - name: windows-2008r2sp1
 
 suites:
-  - name: debian-based
+  - name: default
     run_list:
-      - recipe[se-nix-baseline::default]
-      - recipe[lampp_platform::default]
-    data_bags_path: "test/integration/data_bags"
+      - recipe[chef_run_recorder::default]
+      - recipe[test_harness::default]
+    data_bags_path: 'test/data_bags'
     verifier:
       inspec_tests:
         - test/integration/default
-        - test/integration/self_signed_cert
     attributes:
     includes:
       - ubuntu-18.04
-  - name: rhel-based
-    run_list:
-      - recipe[se-nix-baseline::default]
-      - recipe[lampp_platform::default]
-    data_bags_path: "test/integration/data_bags"
-    verifier:
-      inspec_tests:
-        - test/integration/default
-        - test/integration/vault_cert
-    attributes:
-    includes:
-      - centos-7.5
+      - centos-7
