@@ -68,7 +68,7 @@ end
 # Rsync regularizes the lib directory and ensure no files hang around from old versions
 # Note the trailing slashes
 bash 'Sync Files' do
-  code(lazy { "rsync -av --delete-before --exclude 'LocalSettings.php' '#{path_to_source}/' '#{serve_location}/'" } )
+  code(lazy { "rsync -av --delete-before --exclude 'LocalSettings.php' '#{path_to_source}/' '#{serve_location}/'" })
   only_if { node[tcb]['app_updated'] }
 end
 
