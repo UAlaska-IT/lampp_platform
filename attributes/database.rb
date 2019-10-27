@@ -15,7 +15,7 @@ default[tcb]['database']['user_pw']['vault_data_bag'] = 'passwords'
 default[tcb]['database']['user_pw']['vault_bag_item'] = nil
 default[tcb]['database']['user_pw']['vault_item_key'] = 'db_user'
 
-default[tcb]['database']['backup']['directory'] = '/var/backups/mediawiki'
+default[tcb]['database']['backup']['directory'] = nil
 default[tcb]['database']['backup']['weekday'] = '0'
 default[tcb]['database']['backup']['day'] = '*'
 default[tcb]['database']['backup']['hour'] = '4'
