@@ -17,6 +17,10 @@ module LamppPlatform
       return 'libphp7.so'
     end
 
+    def cache_directory
+      return File.join('/var/chef/cache', node[TCB]['base_name'])
+    end
+
     def default_backup_directory
       dir = node[TCB]['database']['backup']['directory']
       return dir if dir

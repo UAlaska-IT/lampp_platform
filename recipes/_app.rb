@@ -13,16 +13,14 @@ cookbook_file '/var/www/html/phpinfo.php' do
   only_if { node[tcb]['create_php_info'] }
 end
 
-cache_dir = File.join('/var/chef/cache', node[tcb]['base_name'])
-
-directory cache_dir do
+directory cache_directory do
   owner 'root'
   group 'root'
   mode 0o755
   recursive true
 end
 
-dl_location = "#{cache_dir}/#{mediawiki_directory}.tag.gz"
+dl_location = "#{cache_directory}/#{mediawiki_directory}.tag.gz"
 
 remote_file 'Archive DL' do
   path dl_location
@@ -47,7 +45,7 @@ end
 
 checksum_file 'Archive Checksum' do
   source_path dl_location
-  target_path "#{cache_dir}/#{mediawiki_directory}-dl-checksum"
+  target_path "#{cache_directory}/#{mediawiki_directory}-dl-checksum"
 end
 
 ruby_block 'App Updated' do
@@ -61,7 +59,7 @@ end
 # Extraction is not idempotent?
 archive_file 'Application Archive' do
   path dl_location
-  destination cache_dir
+  destination cache_directory
   overwrite true
   group 'root'
   owner 'root'
@@ -70,7 +68,7 @@ end
 
 # Rsync regularizes the lib directory and ensure no files hang around from old versions
 # Note the trailing slashes
-src_location = File.join(cache_dir, mediawiki_directory)
+src_location = File.join(cache_directory, mediawiki_directory)
 bash 'Sync Files' do
   code "rsync -av --delete-before --exclude 'LocalSettings.php' '#{src_location}/' '#{serve_location}/'"
   only_if { node[tcb]['app_updated'] }
