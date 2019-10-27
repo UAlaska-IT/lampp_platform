@@ -17,6 +17,13 @@ module LamppPlatform
       return 'libphp7.so'
     end
 
+    def default_backup_directory
+      dir = node[TCB]['database']['backup']['directory']
+      return dir if dir
+
+      return File.join('/var/backups', node[TCB]['app_name'])
+    end
+
     def mediawiki_directory
       return "mediawiki-#{node[TCB]['wiki']['release_version']}.#{node[TCB]['wiki']['patch_version']}"
     end

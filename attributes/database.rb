@@ -16,7 +16,9 @@ default[tcb]['database']['user_pw']['vault_bag_item'] = nil
 default[tcb]['database']['user_pw']['vault_item_key'] = 'db_user'
 
 default[tcb]['database']['backup']['directory'] = '/var/backups/mediawiki'
-default[tcb]['database']['backup']['frequency'] = 'weekly'
+default[tcb]['database']['backup']['weekday'] = '0'
+default[tcb]['database']['backup']['day'] = '*'
+default[tcb]['database']['backup']['hour'] = '4'
 
 default[tcb]['database']['backup']['copy_to_s3'] = false
 default[tcb]['database']['backup']['delete_local_copy'] = false
