@@ -21,6 +21,10 @@ module LamppPlatform
       return File.join('/var/chef/cache', node[TCB]['base_name'])
     end
 
+    def path_to_download
+      return File.join(cache_directory, node[TCB]['app']['archive']['download_file_name'])
+    end
+
     def default_backup_directory
       dir = node[TCB]['database']['backup']['directory']
       return dir if dir

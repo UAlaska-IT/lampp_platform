@@ -20,10 +20,8 @@ directory cache_directory do
   recursive true
 end
 
-dl_location = "#{cache_directory}/#{mediawiki_directory}.tag.gz"
-
 remote_file 'Archive DL' do
-  path dl_location
+  path(lazy { path_to_download })
   source mediawiki_url
   owner 'root'
   group 'root'
@@ -44,7 +42,7 @@ link "/var/www/html#{node[tcb]['wiki']['script_path']}" do
 end
 
 checksum_file 'Archive Checksum' do
-  source_path dl_location
+  source_path(lazy { path_to_download })
   target_path "#{cache_directory}/#{mediawiki_directory}-dl-checksum"
 end
 
@@ -58,7 +56,7 @@ end
 
 # Extraction is not idempotent?
 archive_file 'Application Archive' do
-  path dl_location
+  path(lazy { path_to_download })
   destination cache_directory
   overwrite true
   group 'root'
@@ -73,6 +71,7 @@ bash 'Sync Files' do
   code "rsync -av --delete-before --exclude 'LocalSettings.php' '#{src_location}/' '#{serve_location}/'"
   only_if { node[tcb]['app_updated'] }
 end
+
 bash 'Set Permissions' do
   code "chown -R #{default_apache_user}:#{default_apache_group} '#{serve_location}'"
   only_if { node[tcb]['app_updated'] }
