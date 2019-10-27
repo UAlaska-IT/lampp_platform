@@ -3,7 +3,7 @@
 tcb = 'lampp_platform'
 
 mariadb_server_install 'Server' do
-  password(lazy { vault_secret_hash(node[tcb]['database']['root_pw']) }) if node[tcb]['database']['set_root_pw']
+  password(lazy { vault_default_secret(node[tcb]['database']['root_pw']) }) if node[tcb]['database']['set_root_pw']
 end
 
 mariadb_server_configuration 'Configuration'
@@ -15,7 +15,7 @@ db_name = node[tcb]['database']['db_name']
 mariadb_database db_name
 
 user = node[tcb]['database']['user_name']
-user_pw = vault_secret_hash(node[tcb]['database']['user_pw'])
+user_pw = vault_default_secret(node[tcb]['database']['user_pw'])
 
 mariadb_user 'Wiki User' do
   username user

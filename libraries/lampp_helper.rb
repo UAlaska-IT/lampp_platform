@@ -38,6 +38,17 @@ module LamppPlatform
     def vault_secret_hash(object)
       return vault_secret(object['vault_data_bag'], object['vault_bag_item'], object['vault_item_key'])
     end
+
+    def default_bag_item(object)
+      attr = object['vault_bag_item']
+      return attr if attr
+
+      return node[TCB]['app_name']
+    end
+
+    def vault_default_secret(object)
+      return vault_secret(object['vault_data_bag'], default_bag_item(object), object['vault_item_key'])
+    end
   end
 end
 
