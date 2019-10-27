@@ -21,7 +21,7 @@ module LamppPlatform
       dir = node[TCB]['database']['backup']['directory']
       return dir if dir
 
-      return File.join('/var/backups', node[TCB]['app_name'])
+      return File.join('/var/backups', node[TCB]['base_name'])
     end
 
     def mediawiki_directory
@@ -50,7 +50,7 @@ module LamppPlatform
       attr = object['vault_bag_item']
       return attr if attr
 
-      return node[TCB]['app_name']
+      return node[TCB]['base_name']
     end
 
     def vault_default_secret(object)

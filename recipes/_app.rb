@@ -13,7 +13,7 @@ cookbook_file '/var/www/html/phpinfo.php' do
   only_if { node[tcb]['create_php_info'] }
 end
 
-cache_dir = File.join('/var/chef/cache', node[tcb]['app_name'])
+cache_dir = File.join('/var/chef/cache', node[tcb]['base_name'])
 
 directory cache_dir do
   owner 'root'
@@ -32,7 +32,7 @@ remote_file 'Archive DL' do
   mode 0o755
 end
 
-serve_location = File.join('/var/lib', node[tcb]['app_name'])
+serve_location = File.join('/var/lib', node[tcb]['base_name'])
 directory serve_location do
   owner 'root'
   group 'root'
