@@ -17,6 +17,13 @@ module LamppPlatform
       return 'libphp7.so'
     end
 
+    def download_url
+      url = node[TCB]['app']['archive']['download_base_url']
+      url += '/' unless url.match?(%r{/$})
+      url += node[TCB]['app']['archive']['download_file_name']
+      return url
+    end
+
     def cache_directory
       return File.join('/var/chef/cache', node[TCB]['base_name'])
     end

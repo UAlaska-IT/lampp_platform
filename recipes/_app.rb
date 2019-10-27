@@ -22,7 +22,7 @@ end
 
 remote_file 'Archive DL' do
   path(lazy { path_to_download })
-  source mediawiki_url
+  source(lazy { download_url })
   owner 'root'
   group 'root'
   mode 0o755
