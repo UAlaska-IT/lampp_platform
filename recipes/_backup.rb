@@ -14,7 +14,7 @@ host = node[tcb]['database']['host']
 user = node[tcb]['database']['user_name']
 pass = vault_secret_hash(node[tcb]['database']['user_pw'])
 database = node['lampp_platform']['database']['db_name']
-time_stamp = Time.now.strftime("%Y-%m-%d")
+time_stamp = Time.now.strftime('%Y-%m-%d')
 time_file = "backup_#{time_stamp}.sql"
 time_file = "'#{File.join(backup_dir, time_file)}'"
 latest_file = "'#{File.join(backup_dir, 'backup_latest.sql')}'"
@@ -23,7 +23,6 @@ code = <<~CODE
   mysqldump -h #{host}  -u #{user} -p '#{pass}' #{database} -c > #{time_file}
   cp #{time_file} #{latest_file}
 CODE
-
 
 if node['lampp_platform']['database']['backup_to_s3']
   code += <<~CODE
