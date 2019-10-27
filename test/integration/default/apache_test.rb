@@ -20,9 +20,19 @@ end
 
 pages = [
   {
-    page: 'phpinfo.php',
+    page: '',
     status: 200,
-    content: /FIX THIS TEST/
+    content: %r{Index of /}
+  },
+  {
+    page: '/code/index.php',
+    status: 200,
+    content: /Welcome to CodeIgniter!/
+  },
+  {
+    page: '/phpinfo.php',
+    status: 200,
+    content: /PHP Version 7\.2/
   }
 ]
 
