@@ -3,7 +3,7 @@
 tcb = 'lampp_platform'
 
 default[tcb]['database']['configure_mariadb'] = false
-default[tcb]['database']['configure_postgres'] = false
+default[tcb]['database']['configure_postgresql'] = false
 
 default[tcb]['database']['host'] = 'localhost'
 default[tcb]['database']['db_name'] = nil

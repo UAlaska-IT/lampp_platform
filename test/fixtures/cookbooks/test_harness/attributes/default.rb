@@ -7,7 +7,7 @@ default[tcb]['base_name'] = 'codeigniter'
 default[tcb]['app']['serve_path'] = 'code'
 
 default[tcb]['database']['configure_mariadb'] = true
-default[tcb]['database']['configure_postgres'] = true
+default[tcb]['database']['configure_postgresql'] = true
 
 default[tcb]['database']['db_name'] = 'not_used'
 default[tcb]['database']['user_name'] = 'bud'
