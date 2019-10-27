@@ -3,8 +3,8 @@
 tcb = 'lampp_platform'
 
 default[tcb]['database']['host'] = 'localhost'
-default[tcb]['database']['db_name'] = 'wiki'
-default[tcb]['database']['user_name'] = 'wiki_user'
+default[tcb]['database']['db_name'] = nil
+default[tcb]['database']['user_name'] = nil
 
 default[tcb]['database']['set_root_pw'] = true
 default[tcb]['database']['root_pw']['vault_data_bag'] = 'passwords'

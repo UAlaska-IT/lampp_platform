@@ -17,12 +17,12 @@ mariadb_database db_name
 user = node[tcb]['database']['user_name']
 user_pw = vault_default_secret(node[tcb]['database']['user_pw'])
 
-mariadb_user 'Wiki User' do
+mariadb_user 'DB User' do
   username user
   password user_pw
 end
 
-mariadb_user 'Wiki Permissions' do
+mariadb_user 'DB Permissions' do
   username user
   password user_pw
   table '*'
