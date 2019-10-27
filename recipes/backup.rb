@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-tcb = 'mediawiki_application'
+tcb = 'lampp_platform'
 
 directory node[tcb]['database']['backup']['directory'] do
   owner 'root'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-tcb = 'mediawiki_application'
+tcb = 'lampp_platform'
 
 Chef::Resource.include(Apache2::Cookbook::Helpers)
 

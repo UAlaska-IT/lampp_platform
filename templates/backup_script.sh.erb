@@ -2,12 +2,12 @@
 
 TIMESTAMP=`date +%Y-%m-%d`
 
-mysqldump -h <%= node['mediawiki_application']['database']['host'] %>  -u <%= node['mediawiki_application']['database']['user_name'] %> -p '<%= @db_password %>' <%= node['mediawiki_application']['database']['db_name'] %> -c > '<%= node['mediawiki_application']['database']['backup']['directory'] %>/backup_${TIMESTAMP}.sql'
+mysqldump -h <%= node['lampp_platform']['database']['host'] %>  -u <%= node['lampp_platform']['database']['user_name'] %> -p '<%= @db_password %>' <%= node['lampp_platform']['database']['db_name'] %> -c > '<%= node['lampp_platform']['database']['backup']['directory'] %>/backup_${TIMESTAMP}.sql'
 
-cp '<%= node['mediawiki_application']['database']['backup']['directory'] %>/backup_${TIMESTAMP}.sql' '<%= node['mediawiki_application']['database']['backup']['directory'] %>/backup_latest.sql'
+cp '<%= node['lampp_platform']['database']['backup']['directory'] %>/backup_${TIMESTAMP}.sql' '<%= node['lampp_platform']['database']['backup']['directory'] %>/backup_latest.sql'
 
-<% if node['mediawiki_application']['database']['backup_to_s3'] -%>
+<% if node['lampp_platform']['database']['backup_to_s3'] -%>
 # Copy both files to S3
-aws s3 cp '<%= node['mediawiki_application']['database']['backup']['directory'] %>/backup_${TIMESTAMP}.sql'
-aws s3 cp '<%= node['mediawiki_application']['database']['backup']['directory'] %>/backup_latest.sql'
+aws s3 cp '<%= node['lampp_platform']['database']['backup']['directory'] %>/backup_${TIMESTAMP}.sql'
+aws s3 cp '<%= node['lampp_platform']['database']['backup']['directory'] %>/backup_latest.sql'
 <% end -%>

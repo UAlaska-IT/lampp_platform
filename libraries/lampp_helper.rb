@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module MediaWiki
+module LamppPlatform
   # This module implements shared utility code for consistency with dependent cookbooks
   module Helper
-    TCB = 'mediawiki_application'
+    TCB = 'lampp_platform'
 
     def php_prefix
       return 'php' if node['platform_family'] == 'debian'
@@ -41,6 +41,6 @@ module MediaWiki
   end
 end
 
-Chef::Provider.include(MediaWiki::Helper)
-Chef::Recipe.include(MediaWiki::Helper)
-Chef::Resource.include(MediaWiki::Helper)
+Chef::Provider.include(LamppPlatform::Helper)
+Chef::Recipe.include(LamppPlatform::Helper)
+Chef::Resource.include(LamppPlatform::Helper)

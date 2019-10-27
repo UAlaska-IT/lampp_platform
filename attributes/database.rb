@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-tcb = 'mediawiki_application'
+tcb = 'lampp_platform'
 
 default[tcb]['database']['host'] = 'localhost'
 default[tcb]['database']['db_name'] = 'wiki'

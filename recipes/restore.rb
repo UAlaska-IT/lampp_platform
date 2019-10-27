@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-tcb = 'mediawiki_application'
+tcb = 'lampp_platform'
 
 backup_file = File.join(node[tcb]['database']['backup']['_directory'], '/backup_latest.sql')
 
