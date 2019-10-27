@@ -13,7 +13,7 @@ cookbook_file '/var/www/html/phpinfo.php' do
   only_if { node[tcb]['create_php_info'] }
 end
 
-cache_dir = '/var/chef/cache/mediawiki'
+cache_dir = File.join('/var/chef/cache', node[tcb]['app_name'])
 
 directory cache_dir do
   owner 'root'
@@ -24,7 +24,7 @@ end
 
 dl_location = "#{cache_dir}/#{mediawiki_directory}.tag.gz"
 
-remote_file 'MediaWiki DL' do
+remote_file 'Archive DL' do
   path dl_location
   source mediawiki_url
   owner 'root'
@@ -32,7 +32,7 @@ remote_file 'MediaWiki DL' do
   mode 0o755
 end
 
-serve_location = '/var/lib/mediawiki'
+serve_location = File.join('/var/lib', node[tcb]['app_name'])
 directory serve_location do
   owner 'root'
   group 'root'
@@ -45,7 +45,7 @@ link "/var/www/html#{node[tcb]['wiki']['script_path']}" do
   group default_apache_group
 end
 
-checksum_file 'Mediawiki Checksum' do
+checksum_file 'Archive Checksum' do
   source_path dl_location
   target_path "#{cache_dir}/#{mediawiki_directory}-dl-checksum"
 end
@@ -55,11 +55,11 @@ ruby_block 'App Updated' do
     node.default[tcb]['app_updated'] = true
   end
   action :nothing
-  subscribes :run, 'checksum_file[Mediawiki Checksum]', :immediate
+  subscribes :run, 'checksum_file[Archive Checksum]', :immediate
 end
 
 # Extraction is not idempotent?
-archive_file 'Mediawiki Archive' do
+archive_file 'Application Archive' do
   path dl_location
   destination cache_dir
   overwrite true
