@@ -40,6 +40,10 @@ module LamppPlatform
       return File.join(path_to_source, node[TCB]['app']['archive']['extract_creates_file'])
     end
 
+    def serve_path
+      return File.join('/var/www/html', node[TCB]['app']['serve_path'])
+    end
+
     def default_backup_directory
       dir = node[TCB]['database']['backup']['directory']
       return dir if dir

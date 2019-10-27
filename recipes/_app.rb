@@ -35,7 +35,8 @@ directory serve_location do
   mode 0o755
 end
 
-link "/var/www/html#{node[tcb]['wiki']['script_path']}" do
+link 'App Link' do
+  target_file(lazy { serve_path })
   to serve_location
   owner default_apache_user
   group default_apache_group
