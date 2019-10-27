@@ -65,6 +65,7 @@ end
 
 postgresql_access 'DB Permissions' do
   access_user user
+  access_method 'password'
   access_db db_name
   only_if { node[tcb]['database']['configure_postgresql'] }
 end
