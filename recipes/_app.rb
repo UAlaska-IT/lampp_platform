@@ -61,7 +61,7 @@ archive_file 'Application Archive' do
   overwrite true
   group 'root'
   owner 'root'
-  only_if { node[tcb]['app_updated'] }
+  only_if { node[tcb]['app_updated'] || !File.exist?(path_to_extract_file) }
 end
 
 # Rsync regularizes the lib directory and ensure no files hang around from old versions

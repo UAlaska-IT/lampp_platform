@@ -36,6 +36,10 @@ module LamppPlatform
       return File.join(cache_directory, node[TCB]['app']['archive']['extract_root_directory'])
     end
 
+    def path_to_extract_file
+      return File.join(path_to_source, node[TCB]['app']['archive']['extract_creates_file'])
+    end
+
     def default_backup_directory
       dir = node[TCB]['database']['backup']['directory']
       return dir if dir
