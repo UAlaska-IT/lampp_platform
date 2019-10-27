@@ -46,8 +46,9 @@ describe file '/var/www/html/code' do
   it { should exist }
   it { should be_symlink }
   it { should be_mode 0o755 }
-  it { should be_owned_by apache_user(node) }
-  it { should be_grouped_into apache_group(node) }
+  # Permissions are for the directory
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
   its(:link_path) { should eq serve_dir }
 end
 
