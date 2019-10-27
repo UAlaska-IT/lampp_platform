@@ -43,7 +43,7 @@ end
 
 checksum_file 'Archive Checksum' do
   source_path(lazy { path_to_download })
-  target_path "#{cache_directory}/#{mediawiki_directory}-dl-checksum"
+  target_path "#{cache_directory}/#{node[tcb]['base_name']}-dl-checksum"
 end
 
 ruby_block 'App Updated' do

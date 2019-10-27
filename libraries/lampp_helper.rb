@@ -47,10 +47,6 @@ module LamppPlatform
       return File.join('/var/backups', node[TCB]['base_name'])
     end
 
-    def mediawiki_directory
-      return "mediawiki-#{node[TCB]['wiki']['release_version']}.#{node[TCB]['wiki']['patch_version']}"
-    end
-
     def vault_secret(bag, item, key)
       # Will raise 404 error if not found
       item = chef_vault_item(
