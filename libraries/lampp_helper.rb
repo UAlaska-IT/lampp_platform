@@ -17,10 +17,17 @@ module LamppPlatform
       return 'libphp7.so'
     end
 
+    def download_file_link
+      link = node[TCB]['app']['archive']['download_file_link']
+      return link if link
+
+      return node[TCB]['app']['archive']['download_file_name']
+    end
+
     def download_url
       url = node[TCB]['app']['archive']['download_base_url']
       url += '/' unless url.match?(%r{/$})
-      url += node[TCB]['app']['archive']['download_file_name']
+      url += download_file_link
       return url
     end
 
