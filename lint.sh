@@ -2,3 +2,4 @@
 
 rubocop
 foodcritic .
+foodcritic test/fixtures/cookbooks/test_harness
