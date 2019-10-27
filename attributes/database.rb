@@ -8,11 +8,11 @@ default[tcb]['database']['user_name'] = 'wiki_user'
 
 default[tcb]['database']['set_root_pw'] = true
 default[tcb]['database']['root_pw']['vault_data_bag'] = 'passwords'
-default[tcb]['database']['root_pw']['vault_bag_item'] = 'mediawiki'
+default[tcb]['database']['root_pw']['vault_bag_item'] = nil
 default[tcb]['database']['root_pw']['vault_item_key'] = 'db_root'
 
 default[tcb]['database']['user_pw']['vault_data_bag'] = 'passwords'
-default[tcb]['database']['user_pw']['vault_bag_item'] = 'mediawiki'
+default[tcb]['database']['user_pw']['vault_bag_item'] = nil
 default[tcb]['database']['user_pw']['vault_item_key'] = 'db_user'
 
 default[tcb]['database']['backup']['directory'] = '/var/backups/mediawiki'
