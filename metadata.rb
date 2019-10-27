@@ -17,6 +17,8 @@ supports 'centos', '>= 7.0'
 
 chef_version '>= 14.0' if respond_to?(:chef_version)
 
+depends 'checksum_file'
+depends 'chef_run_recorder'
 depends 'http_platform'
 depends 'mariadb'
 depends 'yum-epel'
