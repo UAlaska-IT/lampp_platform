@@ -19,10 +19,16 @@ time_file = "backup_#{time_stamp}.sql"
 time_file = "'#{File.join(backup_dir, time_file)}'"
 latest_file = "'#{File.join(backup_dir, 'backup_latest.sql')}'"
 
-code = <<~CODE
-  \nmysqldump -h #{host}  -u #{user} -p '#{pass}' #{database} -c > #{time_file}
-  cp #{time_file} #{latest_file}
-CODE
+code = ''
+if node[tcb]['database']['configure_mariadb']
+  code += "\nmysqldump -h #{host}  -u #{user} -p '#{pass}' #{database} -c > #{time_file}"
+end
+
+if node[tcb]['database']['configure_postgresql']
+  code += "\nPGPASSWORD='#{pass}' pg_dump -U #{user} -h #{host} #{database} > #{time_file}"
+end
+
+code += "\ncp #{time_file} #{latest_file}"
 
 if node['lampp_platform']['database']['backup_to_s3']
   code += <<~CODE
