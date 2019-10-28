@@ -28,4 +28,4 @@ default[tcb]['database']['backup']['hour'] = '4'
 
 default[tcb]['database']['backup']['copy_to_s3'] = false
 default[tcb]['database']['backup']['delete_local_copy'] = false
-default[tcb]['database']['backup']['s3_location'] = nil
+default[tcb]['database']['backup']['s3_path'] = nil

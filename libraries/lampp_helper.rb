@@ -58,6 +58,13 @@ module LamppPlatform
       return File.join('/var/backups', node[TCB]['base_name'])
     end
 
+    def s3_path(file)
+      s3 = "s3://#{node[tcb]['database']['backup']['s3_path']}"
+      s3 += '/' unless s3.match?(%r{/$})
+      s3 += file
+      return s3
+    end
+
     def vault_secret(bag, item, key)
       # Will raise 404 error if not found
       item = chef_vault_item(
