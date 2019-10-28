@@ -21,7 +21,7 @@ latest_file = "'#{File.join(backup_dir, 'backup_latest.sql')}'"
 
 code = ''
 if node[tcb]['database']['configure_mariadb']
-  code += "\nmysqldump -h #{host}  -u #{user} -p '#{pass}' #{database} -c > #{time_file}"
+  code += "\nmysqldump -h #{host} -u #{user} -p'#{pass}' #{database} -c > #{time_file}"
 end
 
 if node[tcb]['database']['configure_postgresql']
