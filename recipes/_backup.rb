@@ -2,9 +2,7 @@
 
 tcb = 'lampp_platform'
 
-backup_dir = default_backup_directory
-
-directory backup_dir do
+directory default_backup_directory do
   owner 'root'
   group 'root'
   mode '750'
@@ -18,15 +16,15 @@ time_stamp = Time.now.strftime('%Y-%m-%d')
 
 code = ''
 if node[tcb]['database']['configure_mariadb']
-  time_path = time_path(backup_dir, 'mariadb', time_stamp)
+  time_path = time_path('mariadb', time_stamp)
   code += "\nmysqldump -h #{host} -u #{user} -p'#{pass}' #{database} -c > #{time_path}"
-  code += backup_command(backup_dir, 'mariadb', time_stamp)
+  code += backup_command('mariadb', time_stamp)
 end
 
 if node[tcb]['database']['configure_postgresql']
-  time_path = time_path(backup_dir, 'postgresql', time_stamp)
+  time_path = time_path('postgresql', time_stamp)
   code += "\nPGPASSWORD='#{pass}' pg_dump -h #{host} -U #{user} #{database} > #{time_path}"
-  code += backup_command(backup_dir, 'postgresql', time_stamp)
+  code += backup_command('postgresql', time_stamp)
 end
 
 cron_d 'lampp_backup' do
