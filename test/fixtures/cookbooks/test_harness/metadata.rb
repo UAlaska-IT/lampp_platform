@@ -15,6 +15,6 @@ version '1.0.0'
 supports 'ubuntu', '>= 16.0'
 supports 'centos', '>= 7.0'
 
-chef_version '>= 14.0.0' if respond_to?(:chef_version)
+chef_version '>= 14.0.0'
 
 depends 'lampp_platform'

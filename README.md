@@ -42,13 +42,21 @@ This cookbook provides no custom resources.
 
 This recipe configures a webserver and database.
 
+### lampp_platform::restore
+
+If a both a local database is configured and backups are configured,
+this recipe will restore the database from the latest snapshot.
+Otherwise does nothing.
+
 ## Attributes
 
 ### default
 
-### php
+### app
 
 ### database
+
+### install
 
 ## Examples
 
