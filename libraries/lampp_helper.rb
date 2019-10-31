@@ -58,11 +58,61 @@ module LamppPlatform
       return File.join('/var/backups', node[TCB]['base_name'])
     end
 
+    def time_file(db_name, time_stamp)
+      return "backup_#{db_name}_#{time_stamp}.sql"
+    end
+
+    def latest_file(db_name)
+      return "backup_#{db_name}_latest.sql"
+    end
+
+    def compress_file(file_name)
+      return "#{file_name}.z7"
+    end
+
+    def time_path(backup_dir, db_name, time_stamp)
+      return "'#{File.join(backup_dir, time_file(db_name, time_stamp))}'"
+    end
+
+    def latest_path(backup_dir, db_name)
+      return "'#{File.join(backup_dir, latest_file(db_name))}'"
+    end
+
+    def compress_path(backup_dir, file_name)
+      return "'#{File.join(backup_dir, compress_file(file_name))}'"
+    end
+
+    def compress_command(backup_dir, db_name, time_stamp)
+      time_file = time_file(db_name, time_stamp)
+      return "\np7z a #{compress_path(backup_dir, time_file)} #{time_path(backup_dir, db_name, time_stamp)}"
+    end
+
+    def copy_command(backup_dir, db_name, time_stamp)
+      return "\ncp #{time_path(backup_dir, db_name, time_stamp)} #{latest_path(backup_dir, db_name)}"
+    end
+
     def s3_path(file)
-      s3 = "s3://#{node[tcb]['database']['backup']['s3_path']}"
+      s3 = "s3://#{node[TCB]['database']['backup']['s3_path']}"
       s3 += '/' unless s3.match?(%r{/$})
       s3 += file
       return s3
+    end
+
+    def s3_copy_command(backup_dir, db_name, time_stamp)
+      code = <<~CODE
+        \n# Copy both files to S3
+        aws s3 cp #{time_path(backup_dir, db_name, time_stamp)} #{s3_path(time_file(db_name, time_stamp))}
+        aws s3 cp #{latest_path(backup_dir, db_name)} #{s3_path(latest_file(db_name))}
+      CODE
+      return code
+    end
+
+    def backup_command(backup_dir, db_name, time_stamp)
+      code = ''
+      code += compress_command(backup_dir, db_name, time_stamp)
+      code += copy_command(backup_dir, db_name, time_stamp)
+      code += s3_copy_command(backup_dir, db_name, time_stamp)
+      return code
     end
 
     def vault_secret(bag, item, key)
