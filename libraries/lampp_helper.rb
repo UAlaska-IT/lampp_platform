@@ -115,6 +115,16 @@ module LamppPlatform
       return code
     end
 
+    def extract_command(db_name)
+      compress_path = compress_path(latest_file(db_name))
+      return "\n7z e #{compress_path}"
+    end
+
+    def extract_delete_command(db_name)
+      latest_path = latest_path(db_name)
+      return "\nrm #{latest_path}"
+    end
+
     def vault_secret(bag, item, key)
       # Will raise 404 error if not found
       item = chef_vault_item(
