@@ -4,7 +4,7 @@
 include_recipe 'yum-epel::default'
 include_recipe 'yum-ius::default'
 
-is_debian = node['platform_family'] == 'debian'
+is_debian = platform_family?('debian')
 
 # Clean php5
 package 'php' do

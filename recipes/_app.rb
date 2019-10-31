@@ -8,7 +8,7 @@ cookbook_file '/var/www/html/phpinfo.php' do
   source 'phpinfo.php'
   owner default_apache_user
   group default_apache_group
-  mode 0o755
+  mode '755'
   action :create
   only_if { node[tcb]['create_php_info'] }
 end
@@ -16,7 +16,7 @@ end
 directory cache_directory do
   owner 'root'
   group 'root'
-  mode 0o755
+  mode '755'
   recursive true
 end
 
@@ -25,14 +25,14 @@ remote_file 'Archive DL' do
   source(lazy { download_url })
   owner 'root'
   group 'root'
-  mode 0o755
+  mode '755'
 end
 
 serve_location = File.join('/var/lib', node[tcb]['base_name'])
 directory serve_location do
   owner 'root'
   group 'root'
-  mode 0o755
+  mode '755'
 end
 
 link 'App Link' do

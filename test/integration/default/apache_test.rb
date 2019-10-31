@@ -22,18 +22,18 @@ pages = [
   {
     page: '',
     status: 200,
-    content: %r{Index of /}
+    content: %r{Index of /},
   },
   {
     page: '/code/index.php',
     status: 200,
-    content: /Welcome to CodeIgniter!/
+    content: /Welcome to CodeIgniter!/,
   },
   {
     page: '/phpinfo.php',
     status: 200,
-    content: /PHP Version 7\.2/
-  }
+    content: /PHP Version 7\.2/,
+  },
 ]
 
 pages.each do |page|

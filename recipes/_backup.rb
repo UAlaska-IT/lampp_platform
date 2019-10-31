@@ -7,7 +7,7 @@ backup_dir = default_backup_directory
 directory backup_dir do
   owner 'root'
   group 'root'
-  mode 0o750
+  mode '750'
 end
 
 host = node[tcb]['database']['host']

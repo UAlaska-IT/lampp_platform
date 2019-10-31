@@ -9,7 +9,7 @@ backup_dir = '/var/backups/codeigniter'
 describe file backup_dir do
   it { should exist }
   it { should be_directory }
-  it { should be_mode 0o750 }
+  it { should be_mode '750' }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
 end
@@ -19,7 +19,7 @@ cron_file = '/etc/cron.d/lampp_backup'
 describe file cron_file do
   it { should exist }
   it { should be_file }
-  it { should be_mode 0o600 }
+  it { should be_mode '600' }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   its(:content) { should match('-h localhost') }
