@@ -12,7 +12,7 @@ mariadb_server_install 'Server' do
 end
 
 postgresql_server_install 'Server' do
-  initdb_locale node[tcb]['database']['postgresql_locale']
+  initdb_locale node[tcb]['database']['postgresql']['locale']
   password(lazy { vault_default_secret(node[tcb]['database']['root_pw']) }) if node[tcb]['database']['set_root_pw']
   only_if { postgresql_server }
 end
@@ -40,7 +40,7 @@ mariadb_database db_name do
 end
 
 postgresql_database db_name do
-  locale node[tcb]['database']['postgresql_locale']
+  locale node[tcb]['database']['postgresql']['locale']
   only_if { postgresql_server }
 end
 

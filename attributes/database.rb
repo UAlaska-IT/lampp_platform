@@ -4,11 +4,11 @@ tcb = 'lampp_platform'
 
 default[tcb]['database']['configure_mariadb'] = false
 default[tcb]['database']['configure_postgresql'] = false
+default[tcb]['database']['db_name'] = nil
 
-default[tcb]['database']['postgresql_locale'] = 'C.UTF-8'
+default[tcb]['database']['postgresql']['locale'] = 'C.UTF-8'
 
 default[tcb]['database']['host'] = 'localhost'
-default[tcb]['database']['db_name'] = nil
 default[tcb]['database']['user_name'] = nil
 
 default[tcb]['database']['set_root_pw'] = true
