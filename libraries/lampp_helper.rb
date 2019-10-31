@@ -111,7 +111,7 @@ module LamppPlatform
       code = ''
       code += compress_command(backup_dir, db_name, time_stamp)
       code += copy_command(backup_dir, db_name, time_stamp)
-      code += s3_copy_command(backup_dir, db_name, time_stamp)
+      code += s3_copy_command(backup_dir, db_name, time_stamp) if node[TCB]['database']['backup']['copy_to_s3']
       return code
     end
 
