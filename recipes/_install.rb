@@ -6,9 +6,6 @@ include_recipe 'yum-ius::default'
 
 is_debian = platform_family?('debian')
 
-package 'p7zip-full' if is_debian
-package 'p7zip' unless is_debian
-
 # Clean php5
 package 'php' do
   action :remove
