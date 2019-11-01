@@ -21,6 +21,7 @@ provisioner:
   attributes:
     lampp_platform:
       create_php_info: true
+      configure_local_database: true
     firewall:
       allow_ssh: true
     http_platform:
