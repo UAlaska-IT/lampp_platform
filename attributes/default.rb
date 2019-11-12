@@ -5,6 +5,6 @@ tcb = 'lampp_platform'
 # mod_php does not support threading
 default['http_platform']['apache']['mpm_module'] = 'prefork'
 
-default[tcb]['configure_local_database'] = false
+default[tcb]['configure_local_database'] = true
 
 default[tcb]['base_name'] = nil
