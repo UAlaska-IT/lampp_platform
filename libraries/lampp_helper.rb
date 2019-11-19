@@ -6,15 +6,31 @@ module LamppPlatform
     TCB = 'lampp_platform'
 
     def php_prefix
-      return 'php' if node['platform_family'] == 'debian'
+      return 'php' if platform_family?('debian')
 
-      return node[TCB]['install']['rhel_centos_version']
+      return "php#{node[TCB]['install']['rhel_php_version'].delete('.')}"
+    end
+
+    def dev_suffix
+      return 'dev' if platform_family?('debian')
+
+      return 'devel'
     end
 
     def php_module_name
-      return 'libphp7.2.so' if node['platform_family'] == 'debian'
+      return "libphp#{node[TCB]['install']['debian_php_version']}.so" if platform_family?('debian')
 
       return 'libphp7.so'
+    end
+
+    def php_version
+      return node[TCB]['install']['debian_php_version'] if platform_family?('debian')
+
+      return node[TCB]['install']['rhel_php_version']
+    end
+
+    def install_cgi
+      return php_version.to_f < 7.3
     end
 
     def download_file_link

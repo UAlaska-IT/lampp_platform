@@ -26,7 +26,7 @@ package 'php-common' do
 end
 
 # Prerequisites for Linux-Apache2-MySQL-PHP; Command-line debugging
-package php_prefix
+package "#{php_prefix}-#{dev_suffix}"
 package "#{php_prefix}-cli"
 package "#{php_prefix}-common"
 
@@ -42,7 +42,9 @@ package 'php-apcu' if is_debian
 package "#{php_prefix}-pecl-apcu" unless is_debian
 
 # Web serving
-package "#{php_prefix}-cgi"
+package "#{php_prefix}-cgi" do
+  only_if { install_cgi }
+end
 
 package 'libapache2-mod-php' if is_debian
 package "mod_#{php_prefix}" unless is_debian
