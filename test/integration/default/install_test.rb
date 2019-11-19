@@ -21,7 +21,7 @@ describe bash('php --version') do
 end
 
 # Prerequisites for Linux-Apache2-MySQL-PHP; Command-line debugging
-describe package php_prefix(node) do
+describe package "#{php_prefix(node)}-#{dev_suffix(node)}" do
   it { should be_installed }
 end
 

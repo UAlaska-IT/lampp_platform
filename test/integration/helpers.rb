@@ -21,5 +21,11 @@ end
 def php_prefix(node)
   return 'php' if node['platform_family'] == 'debian'
 
-  return 'php72'
+  return 'php73'
+end
+
+def dev_suffix(node)
+  return 'dev' if node['platform_family'] == 'debian'
+
+  return 'devel'
 end
