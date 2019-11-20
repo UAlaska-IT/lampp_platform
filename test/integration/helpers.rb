@@ -24,7 +24,7 @@ def php_prefix(node)
   return 'php73'
 end
 
-def install_cgi
+def install_cgi(node)
   return node['platform_family'] == 'debian'
 end
 
