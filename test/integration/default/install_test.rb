@@ -73,6 +73,9 @@ end
 # Web serving
 describe package "#{php_prefix(node)}-cgi" do
   it { should be_installed }
+  before do
+    skip unless install_cgi(node)
+  end
 end
 
 describe package 'libapache2-mod-php' do
