@@ -2,6 +2,7 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.6.5
 LineLength:
+  Enabled: true
   Max: 120 # Default is 80
 Metrics/BlockLength:
   Enabled: false
