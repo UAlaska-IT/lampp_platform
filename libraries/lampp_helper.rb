@@ -71,6 +71,16 @@ module LamppPlatform
       return File.join('/var/www/html', node[TCB]['app']['serve_path'])
     end
 
+    def lampp_sync_command
+      # Rsync regularizes the lib directory and ensure no files hang around from old versions
+      code = 'rsync -av --delete-before'
+      node[TCB]['app']['sync']['exclude_paths'].each do |path|
+        code += " --exclude '#{path}'"
+      end
+      # Note the trailing slashes
+      code += " '#{path_to_source}/' '#{lampp_lib_location}/'"
+    end
+
     def vault_secret(bag, item, key)
       # Will raise 404 error if not found
       item = chef_vault_item(

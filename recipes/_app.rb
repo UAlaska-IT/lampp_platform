@@ -65,10 +65,8 @@ archive_file 'Application Archive' do
   only_if { node[tcb]['app_updated'] || !File.exist?(path_to_extract_file) }
 end
 
-# Rsync regularizes the lib directory and ensure no files hang around from old versions
-# Note the trailing slashes
 bash 'Sync Files' do
-  code(lazy { "rsync -av --delete-before --exclude 'LocalSettings.php' '#{path_to_source}/' '#{serve_location}/'" })
+  code(lazy { lampp_sync_command })
   only_if { node[tcb]['app_updated'] }
 end
 
