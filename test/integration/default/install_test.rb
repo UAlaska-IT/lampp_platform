@@ -105,6 +105,31 @@ describe bash("ls #{apache_lib_dir}") do
   its(:stdout) { should match 'libphp7' }
 end
 
+conf_file = '/etc/httpd/conf-available/php.conf'
+
+describe file conf_file do
+  it { should exist }
+  it { should be_file }
+  it { should be_mode 0o644 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  before do
+    skip if node['platform_family'] == 'debian'
+  end
+end
+
+describe file '/etc/httpd/conf-enabled/php.conf' do
+  it { should exist }
+  it { should be_symlink }
+  it { should be_mode 0o644 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  its(:link_path) { should eq conf_file }
+  before do
+    skip if node['platform_family'] == 'debian'
+  end
+end
+
 describe bash('apachectl -M') do
   its(:exit_status) { should eq 0 }
   # its(:stderr) { should eq '' } # Getting redundant loading of php7 and php7.2
