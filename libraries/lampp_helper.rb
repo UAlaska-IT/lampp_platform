@@ -63,6 +63,10 @@ module LamppPlatform
       return File.join(path_to_source, node[TCB]['app']['archive']['extract_creates_file'])
     end
 
+    def lampp_lib_location
+      return File.join('/var/lib', node[TCB]['base_name'])
+    end
+
     def serve_path
       return File.join('/var/www/html', node[TCB]['app']['serve_path'])
     end

@@ -28,7 +28,7 @@ remote_file 'Archive DL' do
   mode '755'
 end
 
-serve_location = File.join('/var/lib', node[tcb]['base_name'])
+serve_location = lampp_lib_location
 directory serve_location do
   owner default_apache_user
   group default_apache_group
