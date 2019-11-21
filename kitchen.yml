@@ -69,7 +69,7 @@ suites:
   - name: media
     run_list:
       - recipe[chef_run_recorder::default]
-      - recipe[test_harness::default]
+      - recipe[mediawiki_application::default]
     data_bags_path: 'test/data_bags'
     verifier:
       inspec_tests:
