@@ -13,7 +13,7 @@ cookbook_file '/var/www/html/phpinfo.php' do
   only_if { node[tcb]['create_php_info'] }
 end
 
-directory cache_directory do
+directory lampp_cache_directory do
   owner 'root'
   group 'root'
   mode '755'
@@ -44,7 +44,7 @@ end
 
 checksum_file 'Archive Checksum' do
   source_path(lazy { path_to_download })
-  target_path "#{cache_directory}/#{node[tcb]['base_name']}-dl-checksum"
+  target_path "#{lampp_cache_directory}/#{node[tcb]['base_name']}-dl-checksum"
 end
 
 ruby_block 'App Updated' do
@@ -58,7 +58,7 @@ end
 # Extraction is not idempotent?
 archive_file 'Application Archive' do
   path(lazy { path_to_download })
-  destination cache_directory
+  destination lampp_cache_directory
   overwrite true
   group 'root'
   owner 'root'

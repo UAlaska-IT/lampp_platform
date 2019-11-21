@@ -47,16 +47,16 @@ module LamppPlatform
       return url
     end
 
-    def cache_directory
+    def lampp_cache_directory
       return File.join('/var/chef/cache', node[TCB]['base_name'])
     end
 
     def path_to_download
-      return File.join(cache_directory, node[TCB]['app']['archive']['download_file_name'])
+      return File.join(lampp_cache_directory, node[TCB]['app']['archive']['download_file_name'])
     end
 
     def path_to_source
-      return File.join(cache_directory, node[TCB]['app']['archive']['extract_root_directory'])
+      return File.join(lampp_cache_directory, node[TCB]['app']['archive']['extract_root_directory'])
     end
 
     def path_to_extract_file
