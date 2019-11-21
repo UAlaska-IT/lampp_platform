@@ -33,6 +33,8 @@ package "#{php_prefix}-common"
 package 'php-mysql' if is_debian
 package "#{php_prefix}-mysqlnd" unless is_debian
 
+package "#{php_prefix}-pgsql"
+
 package "#{php_prefix}-json"
 
 package "#{php_prefix}-xml"

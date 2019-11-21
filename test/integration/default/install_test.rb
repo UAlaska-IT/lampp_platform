@@ -47,6 +47,10 @@ describe package "#{php_prefix(node)}-mysqlnd" do
   end
 end
 
+describe package "#{php_prefix(node)}-pgsql" do
+  it { should be_installed }
+end
+
 describe package "#{php_prefix(node)}-json" do
   it { should be_installed }
 end
