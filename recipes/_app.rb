@@ -30,8 +30,8 @@ end
 
 serve_location = File.join('/var/lib', node[tcb]['base_name'])
 directory serve_location do
-  owner 'root'
-  group 'root'
+  owner default_apache_user
+  group default_apache_group
   mode '755'
 end
 

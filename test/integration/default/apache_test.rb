@@ -18,6 +18,13 @@ describe bash('apachectl configtest') do
   its(:stdout) { should eq '' }
 end
 
+php_regex =
+  if node['platform_family'] == 'debian'
+    /PHP Version 7\.2/
+  else
+    /PHP Version 7\.3/
+  end
+
 pages = [
   {
     page: '',
@@ -32,7 +39,7 @@ pages = [
   {
     page: '/phpinfo.php',
     status: 200,
-    content: /PHP Version 7\.2/,
+    content: php_regex,
   },
 ]
 
