@@ -5,6 +5,10 @@ module LamppPlatform
   module Helper
     TCB = 'lampp_platform'
 
+    def lamp_local_database?
+      return node[TCB]['database_host'] == 'localhost'
+    end
+
     def php_prefix
       return 'php' if platform_family?('debian')
 
