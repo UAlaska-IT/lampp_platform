@@ -10,7 +10,7 @@ module LamppPlatform
     end
 
     def php_prefix
-      return 'php' if platform_family?('debian')
+      return 'php' if platform_family?('debian') || platform_family?('fedora')
 
       return "php#{node[TCB]['install']['rhel_php_version'].delete('.')}"
     end

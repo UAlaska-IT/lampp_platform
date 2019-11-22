@@ -4,7 +4,7 @@ name 'lampp_platform'
 maintainer 'OIT Systems Engineering'
 maintainer_email 'ua-oit-se@alaska.edu'
 license 'MIT'
-description 'Installs/configures a web platform with Apache, PHP, and MariaDB or PostgreSQL'
+description 'Configures a web platform with Apache, PHP, and MariaDB or PostgreSQL'
 
 git_url = 'https://github.com/UAlaska-IT/lampp_platform'
 source_url git_url
