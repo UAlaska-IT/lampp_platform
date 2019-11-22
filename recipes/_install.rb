@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Compensate for the king-of-snowflakes distro
-include_recipe 'yum-epel::default'
-include_recipe 'yum-ius::default'
+include_recipe 'yum-epel::default' unless platform_family?('fedora')
+include_recipe 'yum-ius::default' unless platform_family?('fedora')
 
 is_debian = platform_family?('debian')
 
