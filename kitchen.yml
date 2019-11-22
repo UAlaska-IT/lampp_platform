@@ -33,6 +33,7 @@ verifier:
   name: inspec
 
 platforms:
+  - name: ubuntu-19.10
   - name: ubuntu-18.04
   - name: ubuntu-16.04
   - name: debian-9
@@ -64,17 +65,8 @@ suites:
         - test/integration/default
     attributes:
     includes:
+      - ubuntu-19.10
       - ubuntu-18.04
+      - debian-9
       - centos-7
-  - name: media
-    run_list:
-      - recipe[chef_run_recorder::default]
-      - recipe[mediawiki_application::default]
-    data_bags_path: 'test/data_bags'
-    verifier:
-      inspec_tests:
-        - test/integration/default
-    attributes:
-    includes:
-      - ubuntu-18.04
-      - centos-7
+      - fedora-30
