@@ -96,7 +96,16 @@ end
 describe package "mod_#{php_prefix(node)}" do
   it { should be_installed }
   before do
-    skip if node['platform_family'] == 'debian'
+    skip unless node['platform_family'] == 'rhel'
+  end
+end
+
+describe bash installed_command(node) do
+  its(:exit_status) { should eq 0 }
+  its(:stderr) { should eq '' }
+  its(:stdout) { should match(/php-7\.\d+\.\d+-1.fc30/) }
+  before do
+    skip unless node['platform_family'] == 'fedora'
   end
 end
 

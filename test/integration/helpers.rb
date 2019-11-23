@@ -24,6 +24,12 @@ def php_prefix(node)
   return 'php73'
 end
 
+def installed_command(node)
+  return 'apt list --installed' if node['platform_family'] == 'debian'
+
+  return 'yum list installed'
+end
+
 def install_cgi(node)
   return node['platform_family'] == 'debian'
 end
