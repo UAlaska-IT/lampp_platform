@@ -100,14 +100,7 @@ describe package "mod_#{php_prefix(node)}" do
   end
 end
 
-describe bash installed_command(node) do
-  its(:exit_status) { should eq 0 }
-  its(:stderr) { should eq '' }
-  its(:stdout) { should match(/php-7\.\d+\.\d+-1.fc30/) }
-  before do
-    skip unless node['platform_family'] == 'fedora'
-  end
-end
+# mod_php is installed with php on Fedora?
 
 apache_lib_dir =
   if node['platform_family'] == 'debian'
