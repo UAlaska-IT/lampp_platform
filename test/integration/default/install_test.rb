@@ -147,7 +147,14 @@ describe file '/etc/httpd/conf-enabled/php.conf' do
   end
 end
 
-describe bash('apachectl -M') do
+module_command =
+  if node['platform_family'] == 'debian'
+    'apachectl'
+  else
+    'httpd'
+  end
+
+describe bash("#{module_command} -M") do
   its(:exit_status) { should eq 0 }
   # its(:stderr) { should eq '' } # Getting redundant loading of php7 and php7.2
   its(:stdout) { should match 'php7' }
