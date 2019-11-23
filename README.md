@@ -1,7 +1,7 @@
 # LAMPP Platform Cookbook
 
-[![License](https://img.shields.io/github/license/ualaska-it/lamp_platform.svg)](https://github.com/ualaska-it/lamp_platform)
-[![GitHub Tag](https://img.shields.io/github/tag/ualaska-it/lamp_platform.svg)](https://github.com/ualaska-it/lamp_platform)
+[![License](https://img.shields.io/github/license/ualaska-it/lamp_platform.svg)](https://github.com/ualaska-it/lampp_platform)
+[![GitHub Tag](https://img.shields.io/github/tag/ualaska-it/lamp_platform.svg)](https://github.com/ualaska-it/lampp_platform)
 [![Build status](https://ci.appveyor.com/api/projects/status/03muohyy9hlfuu5w/branch/master?svg=true)](https://ci.appveyor.com/project/UAlaska/lampp-platform/branch/master)
 
 __Maintainer: OIT Systems Engineering__ (<ua-oit-se@alaska.edu>)
