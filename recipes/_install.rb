@@ -6,6 +6,9 @@ include_recipe 'yum-ius::default' unless platform_family?('fedora')
 
 is_debian = platform_family?('debian')
 
+# Not installed on Debian by default
+package 'rsync'
+
 # Clean php5
 package 'php' do
   action :remove

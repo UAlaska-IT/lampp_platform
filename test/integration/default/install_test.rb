@@ -14,6 +14,10 @@ describe bash('yum repolist') do
   end
 end
 
+describe package 'rsync' do
+  it { should be_installed }
+end
+
 describe bash('php --version') do
   its(:exit_status) { should eq 0 }
   its(:stderr) { should eq '' }
