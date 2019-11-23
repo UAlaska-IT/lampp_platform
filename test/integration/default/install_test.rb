@@ -10,7 +10,7 @@ describe bash('yum repolist') do
   its(:stdout) { should match 'epel/x86_64' }
   its(:stdout) { should match 'ius/x86_64' }
   before do
-    skip if node['platform_family'] == 'debian'
+    skip unless node['platform_family'] == 'rhel'
   end
 end
 
