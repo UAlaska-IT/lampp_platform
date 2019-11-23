@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-tcb = 'lampp_platform'
-
 bash 'Public Hostname' do
   code 'hostnamectl set-hostname `curl -s http://169.254.169.254/latest/meta-data/public-hostname`'
 end
