@@ -18,14 +18,7 @@ describe bash('apachectl configtest') do
   its(:stdout) { should eq '' }
 end
 
-php_regex =
-  if node['platform'] == 'debian'
-    /PHP Version 7\.0/
-  elsif node['platform'] == 'ubuntu' && node['platform_version'].to_i < 19
-    /PHP Version 7\.2/
-  else
-    /PHP Version 7\.3/
-  end
+php_regex = /PHP Version 7/
 
 pages = [
   {
