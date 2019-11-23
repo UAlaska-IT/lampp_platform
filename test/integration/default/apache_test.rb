@@ -19,7 +19,7 @@ describe bash('apachectl configtest') do
 end
 
 php_regex =
-  if node['platform_family'] == 'debian'
+  if node['platform_family'] == 'debian' && node['platform_version'].to_i < 19
     /PHP Version 7\.2/
   else
     /PHP Version 7\.3/
