@@ -19,7 +19,7 @@ def apache_service(node)
 end
 
 def php_prefix(node)
-  return 'php' if node['platform_family'] == 'debian'
+  return 'php' unless node['platform_family'] == 'rhel'
 
   return 'php73'
 end
